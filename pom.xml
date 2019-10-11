@@ -74,7 +74,7 @@
     <gremlin.version>3.3.6</gremlin.version>
     <guava.version>27.1-jre</guava.version>
     <h2.version>1.4.199</h2.version>
-    <httpclient.version>4.5.8</httpclient.version>
+    <httpclient.version>4.5.10</httpclient.version>
     <httpcore.version>4.4.11</httpcore.version>
     <jackson.version>2.9.8</jackson.version>
     <javamail.version>1.6.2</javamail.version>
@@ -99,7 +99,7 @@
     <opennlp.version>1.9.1</opennlp.version>
     <postgres.version>42.2.5</postgres.version>
     <reflections.version>0.9.11</reflections.version>
-    <slf4j.version>1.7.26</slf4j.version>
+    <slf4j.version>1.7.28</slf4j.version>
     <spatial4j.version>0.6</spatial4j.version>
     <snakeyaml.version>1.24</snakeyaml.version>
     <trove4j.version>3.0.3</trove4j.version>
@@ -109,7 +109,7 @@
     <!-- Testing -->
     <fongo.version>2.1.1</fongo.version>
     <greenmail.version>1.5.10</greenmail.version>
-    <junit.version>4.12</junit.version>
+    <junit.version>4.13-beta-3</junit.version>
     <jts.version>1.13</jts.version>
     <log4j.version>2.11.2</log4j.version>
     <mockito.version>2.27.0</mockito.version>
