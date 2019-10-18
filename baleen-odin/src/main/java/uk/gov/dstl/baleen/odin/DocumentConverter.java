@@ -3,6 +3,11 @@ package uk.gov.dstl.baleen.odin;
 
 import static uk.gov.dstl.baleen.annotators.language.MaltParser.ROOT;
 
+import scala.Int;
+import scala.Option;
+import scala.Tuple3;
+import scala.collection.JavaConversions;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,11 +16,6 @@ import org.apache.uima.jcas.cas.FSArray;
 import org.clulab.processors.Document;
 import org.clulab.processors.Sentence;
 import org.clulab.struct.DirectedGraph;
-
-import scala.Int;
-import scala.Option;
-import scala.Tuple3;
-import scala.collection.JavaConverters;
 
 import uk.gov.dstl.baleen.types.language.Dependency;
 import uk.gov.dstl.baleen.types.language.WordLemma;
@@ -57,8 +57,8 @@ public class DocumentConverter {
     Option<DirectedGraph<String>> dependencies = sentence.dependencies();
     if (dependencies.isDefined()) {
       DirectedGraph<String> directedGraph = dependencies.get();
-      JavaConverters.asJavaCollection(directedGraph.roots()).forEach(r -> createRoot(tokens, r));
-      JavaConverters.asJavaCollection(directedGraph.allEdges())
+      JavaConversions.asJavaCollection(directedGraph.roots()).forEach(r -> createRoot(tokens, r));
+      JavaConversions.asJavaCollection(directedGraph.allEdges())
           .forEach(edge -> createEdge(tokens, edge));
     }
   }

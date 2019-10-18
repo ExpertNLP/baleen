@@ -1,6 +1,8 @@
 // Copyright (c) Committed Software 2018, opensource@committed.io
 package uk.gov.dstl.baleen.odin;
 
+import scala.Option;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -8,8 +10,6 @@ import java.util.Optional;
 import org.clulab.processors.Sentence;
 import org.clulab.struct.CorefMention;
 import org.clulab.struct.DirectedGraphEdgeIterator;
-
-import scala.Option;
 
 import uk.gov.dstl.baleen.types.language.WordToken;
 import uk.gov.dstl.baleen.types.semantic.Entity;

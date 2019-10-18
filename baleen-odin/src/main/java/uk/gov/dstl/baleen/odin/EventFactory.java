@@ -1,6 +1,9 @@
 // Copyright (c) Committed Software 2018, opensource@committed.io
 package uk.gov.dstl.baleen.odin;
 
+import scala.collection.JavaConversions;
+import scala.collection.Seq;
+
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Optional;
@@ -12,9 +15,6 @@ import org.apache.uima.jcas.cas.StringArray;
 import org.apache.uima.jcas.tcas.Annotation;
 import org.clulab.odin.EventMention;
 import org.clulab.odin.Mention;
-
-import scala.collection.JavaConverters;
-import scala.collection.Seq;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
@@ -53,7 +53,7 @@ public class EventFactory {
       e.setEnd(eventMention.endOffset());
       e.setValue(eventMention.text());
 
-      List<String> labels = JavaConverters.seqAsJavaList(eventMention.labels());
+      List<String> labels = JavaConversions.seqAsJavaList(eventMention.labels());
       e.setEventType(new StringArray(jCas, labels.size()));
       for (int i = 0; i < labels.size(); i++) {
         e.setEventType(i, labels.get(i));
@@ -70,10 +70,10 @@ public class EventFactory {
       }
 
       Multimap<String, Entity> arguments = ArrayListMultimap.create();
-      JavaConverters.mapAsJavaMap(eventMention.arguments())
+      JavaConversions.mapAsJavaMap(eventMention.arguments())
           .forEach(
               (k, v) ->
-                  JavaConverters.seqAsJavaList(v)
+                  JavaConversions.seqAsJavaList(v)
                       .forEach(
                           m ->
                               checkFor(Entity.class, m.startOffset(), m.endOffset())
@@ -110,6 +110,6 @@ public class EventFactory {
    * @param mentions to extract events from
    */
   public void create(Seq<Mention> mentions) {
-    JavaConverters.seqAsJavaList(mentions).forEach(this::create);
+    JavaConversions.seqAsJavaList(mentions).forEach(this::create);
   }
 }

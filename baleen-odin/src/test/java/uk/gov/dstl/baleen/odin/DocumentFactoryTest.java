@@ -8,6 +8,10 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import scala.Option;
+import scala.collection.Iterable;
+import scala.collection.Iterator;
+
 import java.util.List;
 
 import org.apache.uima.UIMAException;
@@ -20,10 +24,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-
-import scala.Option;
-import scala.collection.Iterable;
-import scala.collection.Iterator;
 
 import com.google.common.collect.ImmutableList;
 

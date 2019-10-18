@@ -6,6 +6,9 @@ import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
 import static uk.gov.dstl.baleen.odin.SentenceFactory.MISSING_VALUE;
 
+import scala.Some;
+import scala.collection.JavaConversions;
+
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -25,9 +28,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-
-import scala.Some;
-import scala.collection.JavaConversions;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;

@@ -3,6 +3,9 @@ package uk.gov.dstl.baleen.odin;
 
 import static java.util.stream.Collectors.toList;
 
+import scala.Option;
+import scala.collection.JavaConversions;
+
 import java.util.*;
 import java.util.Map.Entry;
 
@@ -13,9 +16,6 @@ import org.apache.uima.jcas.cas.FSArray;
 import org.clulab.struct.DirectedGraph;
 import org.clulab.struct.Edge;
 import org.clulab.struct.GraphMap;
-
-import scala.Option;
-import scala.collection.JavaConversions;
 
 import com.google.common.collect.ImmutableList;
 

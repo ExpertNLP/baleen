@@ -4,6 +4,7 @@ package uk.gov.dstl.baleen.annotators.triage;
 import static org.junit.Assert.assertEquals;
 
 import java.util.GregorianCalendar;
+import java.util.TimeZone;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -28,6 +29,8 @@ public class YYYYMMDDAssignerTest extends AbstractAnnotatorTest {
 
     final long timestamp = getDocumentAnnotation().getTimestamp();
 
-    assertEquals(new GregorianCalendar(2017, 0, 23).getTime().getTime(), timestamp);
+    GregorianCalendar gCal = new GregorianCalendar(2017, 0, 23);
+    gCal.setTimeZone(TimeZone.getTimeZone("UTC")); // don't use default 'locale' but UTC timezone
+    assertEquals(gCal.getTime().getTime(), timestamp);
   }
 }

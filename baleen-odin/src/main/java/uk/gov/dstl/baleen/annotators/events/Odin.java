@@ -1,6 +1,8 @@
 // Copyright (c) Committed Software 2018, opensource@committed.io
 package uk.gov.dstl.baleen.annotators.events;
 
+import scala.collection.Seq;
+
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -15,8 +17,6 @@ import org.apache.uima.resource.ResourceInitializationException;
 import org.clulab.odin.ExtractorEngine;
 import org.clulab.odin.Mention;
 import org.clulab.processors.Document;
-
-import scala.collection.Seq;
 
 import com.google.common.collect.ImmutableSet;
 

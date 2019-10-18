@@ -1,6 +1,10 @@
 // Copyright (c) Committed Software 2018, opensource@committed.io
 package uk.gov.dstl.baleen.odin;
 
+import scala.Option;
+import scala.Some;
+import scala.collection.JavaConversions;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -11,10 +15,6 @@ import org.apache.uima.fit.util.JCasUtil;
 import org.apache.uima.jcas.JCas;
 import org.clulab.struct.CorefChains;
 import org.clulab.struct.CorefMention;
-
-import scala.Option;
-import scala.Some;
-import scala.collection.JavaConversions;
 
 import com.google.common.collect.Multimap;
 
