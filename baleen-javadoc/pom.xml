@@ -1,14 +1,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>  
   <parent>
-    <groupId>uk.gov.dstl.baleen</groupId>
-    <artifactId>baleen</artifactId>
-    <version>2.8.0.1-SNAPSHOT</version>
+	<groupId>uk.gov.dstl.baleen</groupId>
+	<artifactId>baleen-parent</artifactId>
+	<version>2.8.0.1-SNAPSHOT</version>
+	<relativePath>./baleen-parent</relativePath>
   </parent>
   <artifactId>baleen-javadoc</artifactId>
   <name>Baleen Javadoc 8</name>
   <description>Taglets to assist with the generation of Baleen specific Javadoc in Java 8</description>
+  <properties>
+		<argLine></argLine>
+	</properties>
   <dependencies>
   <!-- Building with javadoc see https://github.com/dstl/baleen/wiki/Building-Javadoc -->
     <dependency>
@@ -18,5 +22,10 @@
       <scope>system</scope>
       <systemPath>${java.home}/../lib/tools.jar</systemPath> 
     </dependency>
+			<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
   </dependencies>
 </project>

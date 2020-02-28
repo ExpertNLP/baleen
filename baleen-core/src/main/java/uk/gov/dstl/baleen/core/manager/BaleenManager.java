@@ -186,6 +186,22 @@ public class BaleenManager {
   }
 
   /**
+   * Start the manager and wait until all the pipeline completes the document processing and then
+   * shutdown.
+   */
+  public void runUntilBatchCompleted() {
+    exit = false;
+
+    run(
+        manager -> {
+          while (!isBatchCompleted() && !isStopping()) {
+            sleep(1000);
+          }
+          exit = true;
+        });
+  }
+
+  /**
    * Start up a Baleen instance, then run the provided runnable before shutting down.
    *
    * <p>This is useful for full integration tests, or building simple tools.
@@ -254,6 +270,16 @@ public class BaleenManager {
   /** Stop a running instance of BaleenManager. */
   public void stop() {
     exit = true;
+  }
+
+  /**
+   * Determines if the baleen manager should stop as batch processing by all the pipelines are
+   * completed and no documents are left for processing.
+   *
+   * @return true is the baleen manager has completed the processing of the all the documents.
+   */
+  public boolean isBatchCompleted() {
+    return pipelineManager.isBatchCompleted();
   }
 
   /**

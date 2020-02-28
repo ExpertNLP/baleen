@@ -207,6 +207,19 @@ public class BaleenPipeline implements Runnable {
     jCas.reset();
   }
 
+  /**
+   * Return true when no more documents left for processing in the collection reader.
+   *
+   * @return true when completed or when caught exception
+   */
+  public boolean isBatchCompleted() {
+    try {
+      return (collectionReader.hasNext() == false);
+    } catch (Exception e) {
+      return true;
+    }
+  }
+
   private boolean notPausedAndHasDocuments() throws IOException, CollectionException {
     return !paused && collectionReader.hasNext();
   }

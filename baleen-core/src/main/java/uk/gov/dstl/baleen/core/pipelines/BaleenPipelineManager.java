@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -144,6 +145,16 @@ public class BaleenPipelineManager extends AbstractBaleenComponent {
   /** Unpause all pipelines */
   public void unpauseAll() {
     pipelines.values().forEach(BaleenPipeline::unpause);
+  }
+
+  /** Returns true if all the pipelines has completed their document processing */
+  public boolean isBatchCompleted() {
+    Iterator<BaleenPipeline> itr = pipelines.values().iterator();
+    while (itr.hasNext()) {
+      if (itr.next().isBatchCompleted() == false) return false;
+    }
+    // Reached here, means all completed
+    return true;
   }
 
   /**
