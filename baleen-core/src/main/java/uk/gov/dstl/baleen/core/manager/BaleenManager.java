@@ -58,6 +58,8 @@ public class BaleenManager {
 
   private boolean started = true;
 
+  private boolean batchMode = false;
+
   private String yaml = "";
 
   /**
@@ -115,10 +117,13 @@ public class BaleenManager {
     jobManager.configure(configuration);
     jobManager.start();
 
-    LOGGER.info("Initiating web API");
-    webApi = new BaleenWebApi(this);
-    webApi.configure(configuration);
-    webApi.start();
+    // Don't start the web api, if we intend to launch in batch-mode.
+    if (!batchMode) {
+      LOGGER.info("Initiating web API");
+      webApi = new BaleenWebApi(this);
+      webApi.configure(configuration);
+      webApi.start();
+    }
 
     started = true;
 
@@ -191,6 +196,7 @@ public class BaleenManager {
    */
   public void runUntilBatchCompleted() {
     exit = false;
+    batchMode = true;
 
     run(
         manager -> {
