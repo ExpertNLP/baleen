@@ -40,6 +40,7 @@ public class BaleenPipeline implements Runnable {
 
   private volatile boolean paused = false;
   private volatile boolean destroy = false;
+  private volatile boolean processing = false;
 
   private final String name;
   private final PipelineConfiguration config;
@@ -188,23 +189,28 @@ public class BaleenPipeline implements Runnable {
   }
 
   private void processDocument(JCas jCas) throws IOException, CollectionException {
-    LOGGER.debug("Beginning processing of document on {} {}", getType(), name);
+    processing = true;
+    try {
+      LOGGER.debug("Beginning processing of document on {} {}", getType(), name);
 
-    // Get next document from Collection Reader
-    collectionReader.getNext(jCas.getCas());
+      // Get next document from Collection Reader
+      collectionReader.getNext(jCas.getCas());
 
-    // Process JCas with each annotator in turn
-    for (AnalysisEngine ae : annotators) {
-      processAnalysisEngine(jCas, ae, "annotator");
+      // Process JCas with each annotator in turn
+      for (AnalysisEngine ae : annotators) {
+        processAnalysisEngine(jCas, ae, "annotator");
+      }
+
+      // Process JCas with each consumer in turn
+      for (AnalysisEngine ae : consumers) {
+        processAnalysisEngine(jCas, ae, "consumer");
+      }
+
+      // Prepare the JCas for the next document
+      jCas.reset();
+    } finally {
+      processing = false;
     }
-
-    // Process JCas with each consumer in turn
-    for (AnalysisEngine ae : consumers) {
-      processAnalysisEngine(jCas, ae, "consumer");
-    }
-
-    // Prepare the JCas for the next document
-    jCas.reset();
   }
 
   /**
@@ -214,7 +220,7 @@ public class BaleenPipeline implements Runnable {
    */
   public boolean isBatchCompleted() {
     try {
-      return (collectionReader.hasNext() == false);
+      return (processing == false && collectionReader.hasNext() == false);
     } catch (Exception e) {
       return true;
     }
