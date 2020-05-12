@@ -4,8 +4,8 @@
   <parent>
 	<groupId>uk.gov.dstl.baleen</groupId>
 	<artifactId>baleen-parent</artifactId>
-	<version>2.8.0.1-SNAPSHOT</version>
-	<relativePath>./baleen-parent</relativePath>
+	<version>2.8.0.2-SNAPSHOT</version>
+	<relativePath>../baleen-parent</relativePath>
   </parent>
   <artifactId>baleen-javadoc</artifactId>
   <name>Baleen Javadoc 8</name>
